@@ -48,7 +48,7 @@ const App = () => {
         review={review}
         resetFeedBacks={resetFeedBacks}
       />
-      {review.good + review.neutral + review.bad > 0 ? (
+      {totalFeedback > 0 ? (
         <Feedback
           review={review}
           totalFeedback={totalFeedback}
