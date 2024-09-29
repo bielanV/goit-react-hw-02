@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Description from './components/Description/Description';
 import Feedback from './components/Feedback/Feedback';
 import Options from './components/Options/Options';
-import Notification from './components/Notification/Notification ';
+import Notification from './components/Notification/Notification';
 
 const App = () => {
   const [review, setReview] = useState(() => {
@@ -36,6 +36,10 @@ const App = () => {
     });
   };
 
+  const totalFeedback = review.good + review.neutral + review.bad;
+
+  const positiveFeedback = Math.round((review.good / totalFeedback) * 100);
+
   return (
     <div>
       <Description />
@@ -45,7 +49,11 @@ const App = () => {
         resetFeedBacks={resetFeedBacks}
       />
       {review.good + review.neutral + review.bad > 0 ? (
-        <Feedback review={review} />
+        <Feedback
+          review={review}
+          totalFeedback={totalFeedback}
+          positiveFeedback={positiveFeedback}
+        />
       ) : (
         <Notification />
       )}
